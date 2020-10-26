@@ -1,0 +1,15 @@
+{
+  "name": "balancer_arbitrage",
+  "version": "1.0.0",
+  "description": "Balancer Arbitrage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@balancer-labs/sor": "^0.3.3",
+    "ethers": "^5.0.19"
+  }
+}
