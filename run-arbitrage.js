@@ -17,13 +17,35 @@ const DIRECTION = {
     UNISWAP_TO_BALANCER: 1
 };
 
-async function ethEighteenDec(ethPrice, ticker, tokenAddress) {
+async function ethEighteenDec(ticker, tokenAddress) {
+    const [weth, token] = await Promise.all(
+        [addresses.tokens.weth, tokenAddress].map(tAddress => (
+            Fetcher.fetchTokenData(
+                ChainId.MAINNET,
+                tAddress,
+            )
+        )));
+    const wethToken = await Fetcher.fetchPairData(
+        weth,
+        token,
+    );
 
 }
 
 const init = async () => {
     const networkId = await web3.eth.net.getId();
-    console.log(`Hello balancer`);
+
+    web3.eth.subscribe('newBlockHeaders')
+        .on('data', async block => {
+            console.log(`New block received. Block # ${block.number}`);
+            // await ethEighteenDec(flashloan, ethPrice, 'Link', addresses.tokens.link);
+            // await ethEighteenDec(flashloanKNC, ethPrice, 'KNC', addresses.tokens.knc);
+            // await ethNineDecToken(flashloanAmpl, ethPrice, 'Ampl', addresses.tokens.ampl);
+            // await ethNineDecToken(flashloanRLC, ethPrice, 'RLC', addresses.tokens.rlc);
+        })
+        .on('error', error => {
+            console.log(error);
+        });
 }
 
 init();
