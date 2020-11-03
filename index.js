@@ -6,8 +6,8 @@ const ethers = require('ethers');
 const MAX_UINT = ethers.constants.MaxUint256;
 
 // MAINNET
-const tokenIn = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI
-const tokenOut = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH
+const tokenIn = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH
+const tokenOut = '0x514910771AF9Ca656af840dff83E8264EcF986CA' // WETH
 
 const swaps = async () => {
     const data = await sor.getPoolsWithTokens(tokenIn, tokenOut);
@@ -17,8 +17,8 @@ const swaps = async () => {
     const sorSwaps = sor.smartOrderRouter(
         poolData,
         'swapExactIn',
-        new BigNumber('10000000000000000000'),
-        new BigNumber('10'),
+        new BigNumber('100000000000000000000'),
+        new BigNumber('20'),
         0
     );
 
